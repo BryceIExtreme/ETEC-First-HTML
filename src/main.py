@@ -6,6 +6,7 @@ import random
 import quotes
 import names
 
+
 PYPATH = os.path.dirname(__file__)
 lookup = mako.lookup.TemplateLookup(
     directories=[os.path.dirname(__file__),
@@ -31,10 +32,12 @@ class App:
         return t.render(name=q)
     @cherrypy.expose
     def signup(self):
-        return page_signup.get()
+        t = lookup.get_template("signup.html")
+        return t.render()
     @cherrypy.expose
     def posts(self):
-        return page_posts.get()
+        t = lookup.get_template("posts.html")
+        return t.render()
     @cherrypy.expose
     def test(self):
         return page_test.get()
