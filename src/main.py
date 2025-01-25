@@ -7,7 +7,8 @@ import quotes
 
 PYPATH = os.path.dirname(__file__)
 lookup = mako.lookup.TemplateLookup(
-    directories=[os.path.dirname(__file__)]
+    directories=[os.path.dirname(__file__),
+    f"{os.path.dirname(__file__)}/../html"]
 )
 
 #we have modules for each page we're displaying 
