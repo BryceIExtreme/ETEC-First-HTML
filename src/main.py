@@ -1,5 +1,14 @@
 import cherrypy 
 import os.path
+import mako.template
+import mako.lookup
+import random
+import quotes
+
+PYPATH = os.path.dirname(__file__)
+lookup = mako.lookup.TemplateLookup(
+    directories=[os.path.dirname(__file__)]
+)
 
 #we have modules for each page we're displaying 
 import page_index
@@ -8,6 +17,11 @@ import page_posts
 import page_test
 
 class App:
+    @cherrypy.expose
+    def quote(self):
+        q = random.choice(quotes.quotations)
+        t = lookup.get_template("quotes.html")
+        return t.render(quote=q)
     @cherrypy.expose
     def index(self):
         return page_index.get()
