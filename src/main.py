@@ -4,6 +4,7 @@ import mako.template
 import mako.lookup
 import random
 import quotes
+import names
 
 PYPATH = os.path.dirname(__file__)
 lookup = mako.lookup.TemplateLookup(
@@ -25,7 +26,9 @@ class App:
         return t.render(quote=q)
     @cherrypy.expose
     def index(self):
-        return page_index.get()
+        q = random.choice(names.usernames)
+        t = lookup.get_template("index.html")
+        return t.render(name=q)
     @cherrypy.expose
     def signup(self):
         return page_signup.get()
