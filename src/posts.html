@@ -62,56 +62,16 @@ div.dialog {
     <div class="dialog">
     <table class="chart">
     <tbody>
-    <tr>
-        <td><img src="/html/sample10.jpg"></td>
-        <td> ${postdate}</td>
-        <td>Views:321</td></tr>
+        % for i in range(10):
+        <tr>
+            <td><img src=${images[i]}></td>
+            <td> ${postdate[i]}</td>
+            <td>Views: ${views[i]}</td></tr>
+        % endfor
     
-    <tr>
-        <td><img src="/html/sample1.jpg"></td>
-        <td> ${postdate}</td>
-        <td>Views: 349</td>
-    </tr>
-    <tr>
-        <td><img src="/html/sample2.jpg"></td>
-        <td>Posted 3 days ago.</td>
-        <td>Views: 43</td>
-    </tr>
-    <tr>
-        <td><img src="/html/sample3.jpg"></td>
-        <td>Posted 4 days ago</td>
-        <td>Views: 0</td>
-    </tr>
-    <tr>
-        <td><img src="/html/sample4.jpg"></td>
-        <td>Posted 5 days ago.</td>
-        <td>Views: 12390231</td>
-    </tr>
-    <tr>
-        <td><img src="/html/sample5.jpg"></td>
-        <td>Posted 6 days ago.</td>
-        <td>Views: 4213279</td>
-    </tr>
-    <tr>
-        <td><img src="/html/sample6.jpg"></td>
-        <td>Posted 7 days ago.</td>
-        <td>Views: 1</td>
-    </tr>
-    <tr>
-        <td><img src="/html/sample7.jpg"></td>
-        <td>Posted 8 days ago.</td>
-        <td>Views: 765098</td>
-    </tr>
-    <tr>
-        <td><img src="/html/sample8.jpg"></td>
-        <td>Posted 9 days ago.</td>
-        <td>Views: 50</td>
-    </tr>
-    <tr>
-        <td><img src="/html/sample9.jpg"></td>
-        <td>Posted 10 days ago.</td>
-        <td>Views: 78560987809e3</td>
-    </tr>
+
+
+
 </tbody></table>
 </div>
 </body>

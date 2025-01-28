@@ -5,6 +5,7 @@ import mako.lookup
 import random
 import quotes
 import names
+import datesnnums
 
 
 PYPATH = os.path.dirname(__file__)
@@ -36,8 +37,12 @@ class App:
         return t.render()
     @cherrypy.expose
     def posts(self):
+        q = datesnnums.dates
+        v = datesnnums.viewcounts
+        i = datesnnums.images
+        print (i)
         t = lookup.get_template("posts.html")
-        return t.render()
+        return t.render(images = i, postdate = q, views = v)
     @cherrypy.expose
     def test(self):
         return page_test.get()
