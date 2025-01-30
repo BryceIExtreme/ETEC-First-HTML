@@ -70,7 +70,7 @@ def get(): return (
     <div>Enter your password.</div>
     <input type=”password” size=10>
     <div>Enter your date of birth.</div>
-    <input type=”date”>
+    <input type="date">
     <div class="button">OK   
 </div>
 </body>
