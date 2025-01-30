@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Test Page</title>
+<title>Signup Page</title>
 <style>
     
 
@@ -24,7 +24,7 @@
         margin: auto;
 
         /* set size of dialog */
-        width: 40vw;
+        width: 20vw;
         height: 40vh;
 
         overflow: auto;
@@ -66,8 +66,11 @@
     <div>Enter your password.</div>
     <input type=”password” size=10>
     <div>Enter your date of birth.</div>
-    <input type=”date”>
-    <div class="button">OK   
+    <input id = "dob" type="date">
+    <div>
+    <button onclick="dobcheck()">Sign Up!</button>
+    </div>
 </div>
 </body>
+<script src="/html/mycode.js"></script>
 </html>
