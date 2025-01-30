@@ -34,8 +34,8 @@ function emailcheck(){
     if (first == "@"){
         alert_message();
     }
-    if (amt < 2){
-        alert("Email too short");
+    if (amt < 1){
+        alert_message();
     }
     if (last_char == "@"){
         alert_message();
