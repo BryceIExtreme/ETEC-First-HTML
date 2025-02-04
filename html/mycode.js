@@ -6,8 +6,28 @@ function mega_func(){
     emailcheck();
 }
 
-function alert_message(){
-    alert("Invalid Email");
+function alert_message(error_no){
+    let elem = document.createElement("div");
+    elem.setAttribute("id", "foo");
+    elem.classList.add("alert");
+    document.body.appendChild(elem);
+    if (error_no == 1){
+        elem.appendChild( document.createTextNode( "Your email can't start with an @." ) );
+    }
+    else if (error_no == 2){
+        elem.appendChild( document.createTextNode( "Your email is too short." ) );
+    }
+    else if (error_no == 3){
+        elem.appendChild( document.createTextNode( "Your email cannot end with an @ silly." ) );
+    }
+    else if (error_no == 4){
+        elem.appendChild( document.createTextNode( "Your email has too many @s." ) );
+    }
+    else {
+        elem.classList.remove("alert");
+        elem.classList.add("banner");
+        elem.appendChild( document.createTextNode( "Welcome to the same exact page" ) );
+    }
 }
 
 function dobcheck(){
@@ -32,15 +52,18 @@ function emailcheck(){
     let j = email.lastIndexOf("@");
 
     if (first == "@"){
-        alert_message();
+        alert_message(1);
     }
-    if (amt < 1){
-        alert_message();
+    else if (amt < 1){
+        alert_message(2);
     }
-    if (last_char == "@"){
-        alert_message();
+    else if (last_char == "@"){
+        alert_message(3);
     }   
-    if (i != j){
-        alert_message();
+    else if (i != j){
+        alert_message(4);
+    }
+    else {
+        alert_message(0);
     }
 }
