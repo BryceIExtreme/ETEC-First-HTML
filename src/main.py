@@ -13,6 +13,7 @@ lookup = mako.lookup.TemplateLookup(
     directories=[os.path.dirname(__file__),
     f"{os.path.dirname(__file__)}/../html"]
 )
+BASEDIR=os.path.abspath( os.path.dirname(__file__) )
 
 #we have modules for each page we're displaying 
 import page_index
@@ -46,6 +47,21 @@ class App:
     @cherrypy.expose
     def test(self):
         return page_test.get()
+    @cherrypy.expose
+    def updateprofile(self):
+        with open(f"{BASEDIR}/../src/updateprofile.html") as fp:
+            return fp.read()
+
+    @cherrypy.expose
+    @cherrypy.tools.json_out()
+    def do_update(self, name, birthday, pic ):
+        print("name is:",name)
+        print("birthday is:",birthday)
+        print("pic is:",pic)
+        tmp = pic.file.read()
+        #just print first 10 bytes
+        print("pic is:",tmp[:10])
+        return {"ok": True }
         
 #the location where the main.py file is stored: The src folder
 srcdir = os.path.abspath(os.path.dirname(__file__))
