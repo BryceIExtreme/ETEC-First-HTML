@@ -18,6 +18,7 @@ function submit(){
 
     let fdata = new FormData();
     fdata.append("data", picfiles[0])
+    fdata.append("name", postname)
 
     fetch( "/checkImage", {
         method: "POST",

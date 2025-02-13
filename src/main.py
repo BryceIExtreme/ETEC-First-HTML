@@ -23,6 +23,9 @@ import page_signup
 import page_posts
 import page_test
 
+recent_image = None
+text_name = None
+
 class App:
     @cherrypy.expose
     def quote(self):
@@ -33,7 +36,7 @@ class App:
     def index(self):
         q = random.choice(names.usernames)
         t = lookup.get_template("index.html")
-        return t.render(name=q)
+        return t.render(name=q, postname=text_name)
     @cherrypy.expose
     def signup(self):
         t = lookup.get_template("signup.html")
@@ -57,21 +60,33 @@ class App:
     @cherrypy.expose
     @cherrypy.tools.json_out()
     
-    def checkImage(self, data ):
+    def checkImage(self, data, name):
+        global recent_image 
+        global text_name
         try:
             MAXSIZE=4096
             tmp = data.file.read()
-            tmp = io.BytesIO(tmp)
-            with PIL.Image.open(tmp, formats=["JPEG","PNG"]) as img:
+            image = io.BytesIO(tmp)
+            temp = name
+            with PIL.Image.open(image, formats=["JPEG","PNG"]) as img:
                 if img.width > MAXSIZE or img.height > MAXSIZE:
                     return False
+            recent_image = tmp
+            text_name = temp
             return True
         except PIL.UnidentifiedImageError:
             return False
+        
+    @cherrypy.expose
     def mostrecent(self):
-        data = io.BytesIO(data)
+        global recent_image
+        if recent_image == None:
+            with open(f"{srcdir}/../html/thumbnail.jpg","rb") as fp:
+                recent_image = fp.read()
         cherrypy.response.headers["Content-Type"] = "image/jpeg"
-        return data
+        return recent_image
+    
+
     
         
 #the location where the main.py file is stored: The src folder
