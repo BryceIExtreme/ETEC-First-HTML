@@ -1,27 +1,32 @@
 "use strict";
 
+
 function submit(){
-    let fname = document.getElementById("name").value;
-    let dob = document.getElementById("birthdate").value;
     let picfiles = document.getElementById("profilepic").files;
+    let postname = document.getElementById("postname").value;
 
     if( picfiles.length === 0 ){
         alert("Please be smarter.")
         return;
     }
 
+    if (postname.length == 0){
+        alert("Cmon man give the dang post a name")
+        return;
+    }
+
+
     let fdata = new FormData();
-    fdata.append("name", name );
-    fdata.append("birthday", dob );
-    fdata.append("pic", picfiles[0])
+    fdata.append("data", picfiles[0])
 
-
-    fetch( "/do_update", {
+    fetch( "/checkImage", {
         method: "POST",
         body: fdata
     }).then( (resp) => {
         resp.json().then( (J) => {
             console.log("Server said:",J);
+            document.location.assign( 
+                "http://localhost:8080/"); 
         }).catch( (err) => {
             console.log("JSON error:",err);
         })
@@ -40,4 +45,20 @@ function updatethumb(){
         };
         th.src = u;
     }
+}
+
+function recent_img(){
+    fetch( "/mostrecent", {
+        method: "POST",
+        body: fdata
+    }).then( (resp) => {
+        resp.json().then( (J) => {
+            console.log("Server said:",J);
+        }).catch( (err) => {
+            console.log("JSON error:",err);
+        })
+    }).catch( (err) => {
+        console.log("Error:",err);
+    });
+    return 0;
 }

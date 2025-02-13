@@ -6,6 +6,8 @@ import random
 import quotes
 import names
 import datesnnums
+import PIL.Image
+import io
 
 
 PYPATH = os.path.dirname(__file__)
@@ -54,14 +56,23 @@ class App:
 
     @cherrypy.expose
     @cherrypy.tools.json_out()
-    def do_update(self, name, birthday, pic ):
-        print("name is:",name)
-        print("birthday is:",birthday)
-        print("pic is:",pic)
-        tmp = pic.file.read()
-        #just print first 10 bytes
-        print("pic is:",tmp[:10])
-        return {"ok": True }
+    
+    def checkImage(self, data ):
+        try:
+            MAXSIZE=4096
+            tmp = data.file.read()
+            tmp = io.BytesIO(tmp)
+            with PIL.Image.open(tmp, formats=["JPEG","PNG"]) as img:
+                if img.width > MAXSIZE or img.height > MAXSIZE:
+                    return False
+            return True
+        except PIL.UnidentifiedImageError:
+            return False
+    def mostrecent(self):
+        data = io.BytesIO(data)
+        cherrypy.response.headers["Content-Type"] = "image/jpeg"
+        return data
+    
         
 #the location where the main.py file is stored: The src folder
 srcdir = os.path.abspath(os.path.dirname(__file__))

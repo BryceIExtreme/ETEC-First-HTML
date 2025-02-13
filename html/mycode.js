@@ -7,10 +7,16 @@ function mega_func(){
 }
 
 function alert_message(error_no){
-    let elem = document.createElement("div");
-    elem.setAttribute("id", "foo");
-    elem.classList.add("alert");
-    document.body.appendChild(elem);
+    let elem = document.getElementById("foo");
+    if (elem == null){
+        elem = document.createElement("div");
+        elem.setAttribute("id", "foo");
+        elem.classList.add("alert");
+        document.body.appendChild(elem);
+    }
+    else {
+        elem.innerHTML = "";
+    }
     if (error_no == 1){
         elem.appendChild( document.createTextNode( "Your email can't start with an @." ) );
     }
@@ -24,7 +30,6 @@ function alert_message(error_no){
         elem.appendChild( document.createTextNode( "Your email has too many @s." ) );
     }
     else {
-        elem.classList.remove("alert");
         elem.classList.add("banner");
         elem.appendChild( document.createTextNode( "Welcome to the same exact page" ) );
     }

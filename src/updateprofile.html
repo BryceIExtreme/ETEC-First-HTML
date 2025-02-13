@@ -17,12 +17,13 @@
     }
 </style></head><body>
 <div>
-    <span class="fieldname">Profile Picture:</span>
+    <span class="fieldname">Choose an Image:</span>
     <input id="profilepic" type="file" style="display:none"
         onchange="updatethumb()">
     <label for="profilepic" class="filepicker">Click to Pick</label>
     <img id="thumbnail" width="64" height="64">
+    <input id="postname" size=10>
 </div>
-<button onclick="submit()">Update</button>
+<button onclick="submit()">Make the Post!</button>
 <script src="/html/updateprofile.js"></script>
 </body></html>
